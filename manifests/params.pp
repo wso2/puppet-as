@@ -20,6 +20,9 @@ class wso2as::params {
   {
     $is_datasource        = hiera('wso2::is_datasource')
     $template_list        = hiera_array('wso2::template_list')
+    $post_install_resources   = hiera('wso2::post_install_resources', { } )
+    $post_configure_resources = hiera('wso2::post_configure_resources', { } )
+    $post_start_resources     = hiera('wso2::post_start_resources', { } )
   }
   else
   {
@@ -37,8 +40,7 @@ class wso2as::params {
 
     $post_install_resources             = undef
     $post_configure_resources           = undef
-    $data4                              = { resource1 => { param1 =>'value1', param2 => 'value2' } }
-    $post_start_resources               = [{ type => 'wso2as::dynamic_type', data => $data4 }]
+    $post_start_resources               = undef
     $is_datasource                      = 'wso2_carbon_db'
   }
 
