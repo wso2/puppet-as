@@ -19,8 +19,6 @@ class wso2as (
 
   # wso2as specific parameters - start
   $template_list             = $wso2as::params::template_list,
-  $key_store                 = $wso2as::params::key_store,
-  $trust_store               = $wso2as::params::trust_store,
   $is_datasource             = $wso2as::params::is_datasource,
   # wso2as specific parameters - end
 
@@ -31,6 +29,10 @@ class wso2as (
   $directory_list         = $wso2base::params::directory_list,
   $hosts_mapping          = $wso2base::params::hosts_mapping,
   $java_home              = $wso2base::params::java_home,
+  $prefs_system_root      = $wso2base::params::java_prefs_system_root,
+  $prefs_user_root        = $wso2base::params::java_prefs_user_root,
+  $java_prefs_system_root = $wso2base::params::java_prefs_system_root,
+  $java_prefs_user_root   = $wso2base::params::java_prefs_user_root,
 
   $master_datasources     = $wso2base::params::master_datasources,
   $registry_mounts        = $wso2base::params::registry_mounts,
@@ -69,6 +71,18 @@ class wso2as (
   # other paramaters - end
 
 ) inherits wso2as::params {
+
+
+  ::wso2base::system { "Create system configurations for [product] ${::product_name} [profile] ${::product_profile} ":
+    packages          => $packages,
+    wso2_group        => $wso2_group,
+    wso2_user         => $wso2_user,
+    service_name      => $service_name,
+    service_template  => $service_template,
+    hosts_mapping     => $hosts_mapping,
+    prefs_system_root => $prefs_system_root,
+    prefs_user_root   => $prefs_user_root
+  }
 
   $carbon_home          = "${install_dir}/${pack_extracted_dir}"
 
@@ -138,35 +152,4 @@ class wso2as (
     }
   }
 
-  # wso2base::system { 'Creating User and Group':
-  #   packages         => $packages,
-  #   wso2_group       => $wso2_group,
-  #   wso2_user        => $wso2_user,
-  #   service_name     => $service_name,
-  #   service_template => $service_template,
-  #   hosts_mapping    => $hosts_mapping
-  # }
-  #
-  # # require $java_class
-  #
-  # wso2base::server { $carbon_home:
-  #   maintenance_mode    => $maintenance_mode,
-  #   pack_filename       => $pack_filename,
-  #   pack_dir            => $pack_dir,
-  #   carbon_home_symlink => $carbon_home_symlink,
-  #   install_mode        => $install_mode,
-  #   install_dir         => $install_dir,
-  #   pack_extracted_dir  => $pack_extracted_dir,
-  #   wso2_user           => $wso2_user,
-  #   wso2_group          => $wso2_group,
-  #   patches_dir         => $patches_dir,
-  #   service_name        => $service_name,
-  #   service_template    => $service_template,
-  #   template_list       => $template_list,
-  #   directory_list      => $directory_list,
-  #   file_list           => $file_list,
-  #   system_file_list    => $system_file_list,
-  #   enable_secure_vault => $enable_secure_vault,
-  #   key_store_password  => $key_store_password
-  # }
 }
