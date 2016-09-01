@@ -26,17 +26,12 @@ class wso2as::params {
   }
   else
   {
-    $template_list          = [
-      'repository/conf/carbon.xml',
-      'repository/conf/user-mgt.xml',
-      'repository/conf/registry.xml',
+    $base_template_list = $wso2base::params::template_list
+    $as_template_list          = [
       'repository/conf/identity.xml',
-      'repository/conf/datasources/master-datasources.xml',
-      'repository/conf/tomcat/catalina-server.xml',
-      'repository/conf/axis2/axis2.xml',
-      'repository/conf/security/authenticators.xml',
-      'bin/wso2server.sh'
     ]
+
+    $template_list = concat($base_template_list,$as_template_list)
 
     $post_install_resources             = undef
     $post_configure_resources           = undef

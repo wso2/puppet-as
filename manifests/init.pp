@@ -104,7 +104,7 @@ class wso2as (
     require               => Wso2base::System["Create system configurations for [product] ${::product_name} [profile] ${::product_profile} "]
   }
 
-  if ($post_install_resources != undef) {
+  if (!empty($post_install_resources)) {
     ::wso2base::resource {
       $post_install_resources:
         require => Wso2base::Clean_and_install["Cleaning and Installing $title"],
@@ -131,7 +131,7 @@ class wso2as (
     require                         => Wso2base::Clean_and_install["Cleaning and Installing $title"]
   }
 
-  if ($post_configure_resources != undef) {
+  if (!empty($post_configure_resources)) {
     ::wso2base::resource {
       $post_configure_resources:
         require => Wso2base::Configure_and_deploy["Configuring and Deploying $title"],
@@ -145,7 +145,7 @@ class wso2as (
     require      => Wso2base::Configure_and_deploy["Configuring and Deploying $title"]
   }
 
-  if ($post_start_resources != undef) {
+  if (!empty($post_start_resources)) {
     ::wso2base::resource {
       $post_start_resources:
         require => Wso2base::Start["Starting $title"]
