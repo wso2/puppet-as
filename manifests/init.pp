@@ -65,6 +65,8 @@ class wso2as (
   $secure_vault_configs   = $wso2base::params::secure_vault_configs,
   $key_stores             = $wso2base::params::key_stores,
 
+  $platform_version          = $wso2as::params::platform_version,
+  $patch_list                = $wso2as::params::patch_list,
   $post_install_resources    = $wso2as::params::post_install_resources,
   $post_configure_resources  = $wso2as::params::post_configure_resources,
   $post_start_resources      = $wso2as::params::post_start_resources
@@ -115,6 +117,8 @@ class wso2as (
   ::wso2base::configure_and_deploy { "Configuring and Deploying $title":
     install_dir                     => $install_dir,
     patches_dir                     => $patches_dir,
+    patch_list                      => $patch_list,
+    platform_version                => $platform_version,
     wso2_user                       => $wso2_user,
     wso2_group                      => $wso2_group,
     template_list                   => $template_list,
