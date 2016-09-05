@@ -16,32 +16,17 @@
 
 class wso2as::params {
 
-  if($::use_hieradata == 'true')
-  {
+  if ($::use_hieradata == true) {
     $is_datasource        = hiera('wso2::is_datasource')
     $template_list        = hiera_array('wso2::template_list')
-    $post_install_resources   = hiera('wso2::post_install_resources', { } )
-    $post_configure_resources = hiera('wso2::post_configure_resources', { } )
-    $post_start_resources     = hiera('wso2::post_start_resources', { } )
-    $platform_version         = hiera('wso2::platform_version')
-    $patch_list               = hiera('wso2::patch_list', { } )
-  }
-  else
-  {
-    $base_template_list = $wso2base::params::template_list
-    $as_template_list          = [
+    $platform_version     = hiera('wso2::platform_version')
+
+  } else {
+    $as_template_list     = [
       'repository/conf/identity.xml',
     ]
-
-    $template_list = concat($base_template_list,$as_template_list)
-
-    $post_install_resources             = undef
-    $post_configure_resources           = undef
-    $post_start_resources               = undef
-    $is_datasource                      = 'wso2_carbon_db'
-    $platform_version                   = '4.4.0'
-    $patch_list                         = []
+    $template_list = concat($wso2base::params::template_list, $as_template_list)
+    $is_datasource        = 'wso2_carbon_db'
+    $platform_version     = '4.4.0'
   }
-
-
 }
