@@ -1,6 +1,9 @@
 # WSO2 Application Server Puppet Module
 
-This repository contains the Puppet Module for installing and configuring WSO2 AS on various environments. It supports multiple versions of WSO2 AS. Configuration data is managed using [Hiera](http://docs.puppetlabs.com/hiera/1/). Hiera provides a mechanism for separating configuration data from Puppet scripts and managing them in a separate set of YAML files in a hierarchical manner.
+This repository contains the Puppet Module for installing and configuring WSO2 Application Server. 
+Configuration data can be managed either using the site manifest or [Hiera](http://docs.puppetlabs.com/hiera/1/). 
+Hiera provides a mechanism for separating configuration data from Puppet manifests and managing them in 
+a separate set of YAML files in a hierarchical manner.
 
 ## Supported Operating Systems
 
