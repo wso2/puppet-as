@@ -53,6 +53,8 @@ class wso2as (
   $enable_secure_vault    = $wso2base::params::enable_secure_vault,
   $secure_vault_configs   = undef,
   $key_stores             = $wso2base::params::key_stores,
+  $carbon_home            = $wso2base::params::carbon_home,
+  $pack_file_abs_path     = $wso2base::params::pack_file_abs_path,
 
   # Templated configuration parameters
   $master_datasources     = $wso2base::params::master_datasources,
@@ -70,6 +72,8 @@ class wso2as (
   $sso_authentication     = $wso2base::params::sso_authentication,
   $user_management        = $wso2base::params::user_management
 ) inherits wso2as::params {
+
+  validate_string($is_datasource)
 
   class { '::wso2base':
     packages               => $packages,
@@ -104,17 +108,18 @@ class wso2as (
     enable_secure_vault    => $enable_secure_vault,
     secure_vault_configs   => $secure_vault_configs,
     key_stores             => $key_stores,
+    carbon_home            => $carbon_home,
+    pack_file_abs_path     => $pack_file_abs_path
   }
 
-  validate_string($is_datasource)
-
+  contain wso2base
   contain wso2base::system
   contain wso2base::clean
   contain wso2base::install
   contain wso2base::configure
   contain wso2base::service
 
-  Class['::wso2base::system'] -> Class['::wso2base::clean']
-  -> Class['::wso2base::install'] -> Class['::wso2base::configure']
-  ~> Class['::wso2base::service']
+  Class['::wso2base'] -> Class['::wso2base::system']
+  -> Class['::wso2base::clean'] -> Class['::wso2base::install']
+  -> Class['::wso2base::configure'] ~> Class['::wso2base::service']
 }
