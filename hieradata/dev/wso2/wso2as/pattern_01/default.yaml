@@ -13,6 +13,8 @@
 # limitations under the License.
 
 ---
+classes:
+  - wso2as
 
 wso2::service_name: wso2as
 wso2::hostname: as.dev.wso2.org

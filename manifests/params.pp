@@ -16,7 +16,7 @@
 
 class wso2as::params {
 
-  if $::use_hieradata == true {
+  if $::use_hieradata == 'true' {
     $is_datasource        = hiera('wso2::is_datasource')
     $template_list        = hiera_array('wso2::template_list')
     $platform_version     = hiera('wso2::platform_version')
