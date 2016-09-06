@@ -17,15 +17,6 @@ a separate set of YAML files in a hierarchical manner.
 ## How to Contribute
 Follow the steps mentioned in the [wiki](https://github.com/wso2/puppet-base/wiki) to setup a development environment and update/create new puppet modules.
 
-## Add WSO2 Base Puppet Module
-
-Run the following commands to get wso2base submodule.
-
-````
-git submodule init
-git submodule update
-````
-
 ## Packs to be Copied
 
 Copy the following files to their corresponding locations.
