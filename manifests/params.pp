@@ -22,10 +22,9 @@ class wso2as::params {
   $fqdn                       = $::fqdn
 
   # use_hieradata facter flags whether parameter lookup should be done via Hiera
-  if $::use_hieradata == true {
+  if $::use_hieradata == 'true' {
 
     $is_datasource            = hiera('wso2::is_datasource')
-    $platform_version         = hiera('wso2::platform_version')
 
     $java_prefs_system_root   = hiera('java_prefs_system_root')
     $java_prefs_user_root     = hiera('java_prefs_user_root')

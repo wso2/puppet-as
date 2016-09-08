@@ -17,9 +17,8 @@ classes:
   - wso2as
 
 wso2::service_name: wso2as
-wso2::hostname: as.dev.wso2.org
+wso2::hostname: as.dev.wso2.org.pattern1
 wso2::mgt_hostname: as.dev.wso2.org
-wso2::platform_version: 4.4.0
 
 #wso2::patch_list:
 #  - patch0001
